@@ -1,0 +1,152 @@
+*{
+	padding: 0px;
+	margin: 0px;
+	box-sizing: border-box;
+}
+body{
+
+	background-color: black;
+}
+@font-face {
+font-family: "OpenSans"; 
+src: url("../Fonts/OpenSans.ttf") format("truetype"); 
+font-style: normal; 
+font-weight: normal; 
+} 
+@font-face {
+font-family: "OpenSans-Bold"; 
+src: url("../Fonts/OpenSans/OpenSans-Bold.ttf") format("truetype"); 
+font-style: normal; 
+font-weight: normal; 
+} 
+#sheet{
+	border: 10px ridge white;
+	image-rendering: pixelated;
+	position: absolute;
+	margin-top:30px;
+	margin-left: calc(50% - 640px);
+	background-color: #1C7430;
+	background-color: black;
+	
+}
+#startImage{
+	
+	width: 503px;
+	height: 261px;
+ 	position: absolute;
+	margin-top: 200px;
+	margin-left: calc(50% - 251.5px);
+	background-image: url("../Images/StartGame.png");
+}
+#startGameText{
+	width: 300px;
+	position: absolute;
+	margin-top:450px;
+	text-align: center;
+	margin-left: calc(50% - 150px);
+	opacity: 0.85;
+	font-family: OpenSans-Bold;
+	font-size: 28px;
+	color: #FFFFFF;
+	letter-spacing: 0.2px;
+	text-transform: uppercase;
+	-webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+#startButton{
+	cursor: pointer;
+	position: absolute;
+	padding: 10px 20px 10px 20px;
+	background-color: #FFF;
+	text-align: center;
+	opacity: 0.85;
+	border-radius: 4px;
+	margin-top: 500px;
+	margin-left: calc(50% - 72px);
+	width: 144px;
+	height: 42px;
+}
+#startButton:hover{
+	background-color: #CCC;
+}
+#startButtonText{
+	font-family: OpenSans-Bold;
+	font-size: 16px;
+	color: #1C7430;
+	letter-spacing: 0;
+}
+.blockNone{
+	display: none;
+}
+#cardSpriteImg{	
+	width: 2488px;
+	height: 1200px;
+ 	
+}
+#score{
+	display: none;
+	/*display: flex;*/
+	 -ms-flex-flow: row;
+    -webkit-flex-flow: row;
+    flex-flow: row; 
+	align-items: flex-end; 
+
+	position: absolute;
+	margin-left: calc(50% + 380px);
+	margin-top: 60px;
+	color: white;
+}
+#score>*{
+
+	margin-left: auto;
+	font-family: OpenSans-Bold;
+	font-size: 14px;
+}
+.gameText{
+	width: 300px;
+	position: absolute;
+	margin-top:430px;
+	text-align: center;
+	margin-left: calc(50% - 150px);
+	opacity: 0.85;
+	font-family: OpenSans-Bold;
+	font-size: 24px;
+	color: #FFFFFF;
+	letter-spacing: 0.2px;
+	text-transform: uppercase;
+	-webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+#finalScore{
+	width: 500px;
+	position: absolute;
+	margin-top:460px;
+	text-align: center;
+	margin-left: calc(50% - 250px);
+	opacity: 0.85;
+	font-family: OpenSans-Bold;
+	font-size: 24px;
+	color: #FFFFFF;
+	letter-spacing: 0.2px;
+	text-transform: uppercase;
+	-webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+#finalImage{
+	width: 503px;
+	height: 261px;
+ 	position: absolute;
+	margin-top: 180px;
+	margin-left: calc(50% - 251.5px);
+	background-image: url("../Images/FinalScreen.png");
+}
+#startScreen{
+	
+}
+#finalScreen{
+	display: none;
+}
+
