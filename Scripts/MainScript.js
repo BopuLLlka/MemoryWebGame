@@ -240,7 +240,7 @@ $(document).ready(function (e)
 						secondOpenCardNumber = i;
 						isFirstCardOpen = false;
 						//Вызываем функцию подсчёта очков
-						scoreControl();
+						scoreControl(event);
 					}
 					else
 					{
@@ -254,7 +254,7 @@ $(document).ready(function (e)
 		}
 	}
 	//Управление счётом
-	function scoreControl()
+	function scoreControl(mouseEvent)
 	{
 		//Высчитываем сколько сейчас нужно прибавить/отнять очков
 		var curScore = (cardsInGame/2)*42;
@@ -269,6 +269,8 @@ $(document).ready(function (e)
 			score += curScore;
 			console.log("+"+curScore+"="+score);
 			scoreBlock.text("Очки: "+score);
+			$(".currentScore").remove();
+			$("body").append("<div class='currentScore' style='left:"+(mouseEvent.offsetX+20)+"; top:"+(mouseEvent.offsetY+20)+";'> +"+curScore+"</div>")
 			//Перерисовываем игровое поле
 			setTimeout(reDraw,1000);
 		}
@@ -281,6 +283,8 @@ $(document).ready(function (e)
 			score -= curScore;
 			console.log("-"+curScore+"="+score);
 			scoreBlock.text("Очки: "+score);
+			$(".currentScore").remove();
+			$("body").append("<div class='currentScore' style='left:"+(mouseEvent.offsetX+20)+"; top:"+(mouseEvent.offsetY+20)+"; color:red;'> -"+curScore+"</div>")
 			//Перерисовываем игровое поле
 			setTimeout(reDraw,1000);
 		}

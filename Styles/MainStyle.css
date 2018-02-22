@@ -158,6 +158,9 @@ body{
 	font-size: 14px;
 }
 #restartBtn{
+	-webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
 	height: 20px;
 	font-size: 14px;
 	font-family: OpenSans-SemiBold;
@@ -168,3 +171,25 @@ body{
 	color: lightgrey;
 }
 /*Верхняя часть конец*/
+
+/*Улетающий счёт при нажатии*/
+.currentScore{
+	font-family: OpenSans-Bold;
+	font-size: 50px;
+	position: absolute;
+	z-index: 1;
+	top: 100;
+	visibility:collapse;
+	color: green;
+	-webkit-animation-name: scoreAnimation;
+	-webkit-animation-duration: 2s;
+	-moz-animation-name: scoreAnimation;
+	-moz-animation-duration: 2s;
+	-o-animation-name: scoreAnimation;
+	-o-animation-duration: 2s;
+}
+@keyframes scoreAnimation
+{
+	0%   { visibility: visible;}
+    100% { top: -100; color: white; display: }
+}
