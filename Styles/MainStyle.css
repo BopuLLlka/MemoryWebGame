@@ -5,32 +5,37 @@
 }
 body{
 
-	background-color: black;
+	background-color: #333336;
 }
 @font-face {
-font-family: "OpenSans"; 
-src: url("../Fonts/OpenSans.ttf") format("truetype"); 
-font-style: normal; 
-font-weight: normal; 
+	font-family: "OpenSans"; 
+	src: url("../Fonts/OpenSans.ttf") format("truetype"); 
+	font-style: normal; 
+	font-weight: normal; 
 } 
 @font-face {
-font-family: "OpenSans-Bold"; 
-src: url("../Fonts/OpenSans/OpenSans-Bold.ttf") format("truetype"); 
-font-style: normal; 
-font-weight: normal; 
+	font-family: "OpenSans-Bold"; 
+	src: url("../Fonts/OpenSans/OpenSans-Bold.ttf") format("truetype"); 
+	font-style: normal; 
+	font-weight: normal; 
 } 
+@font-face {
+	font-family: "OpenSans-SemiBold"; 
+	src: url("../Fonts/OpenSans/OpenSans-SemiBold.ttf") format("truetype"); 
+	font-style: normal; 
+	font-weight: normal; 
+} 
+
 #sheet{
-	border: 10px ridge white;
+	
+	border: 10px solid #666666;
 	image-rendering: pixelated;
 	position: absolute;
 	margin-top:30px;
 	margin-left: calc(50% - 640px);
-	background-color: #1C7430;
 	background-color: black;
-	
 }
 #startImage{
-	
 	width: 503px;
 	height: 261px;
  	position: absolute;
@@ -84,25 +89,6 @@ font-weight: normal;
 	height: 1200px;
  	
 }
-#score{
-	display: none;
-	/*display: flex;*/
-	 -ms-flex-flow: row;
-    -webkit-flex-flow: row;
-    flex-flow: row; 
-	align-items: flex-end; 
-
-	position: absolute;
-	margin-left: calc(50% + 380px);
-	margin-top: 60px;
-	color: white;
-}
-#score>*{
-
-	margin-left: auto;
-	font-family: OpenSans-Bold;
-	font-size: 14px;
-}
 .gameText{
 	width: 300px;
 	position: absolute;
@@ -149,4 +135,32 @@ font-weight: normal;
 #finalScreen{
 	display: none;
 }
-
+#topMenuContainer{
+	display: none;
+	-ms-flex-flow: row;
+    -webkit-flex-flow: row;
+    flex-flow: row; 
+	justify-content: space-between;
+	position: absolute;
+	width: 1280px;
+	margin-left: calc(50% - 640px);
+	margin-top: 60px;
+	padding: 0px 200px 0px 215px;
+	color: white;
+}
+#score{
+	height: 20px;
+	margin-left: auto;
+	font-family: OpenSans-Bold;
+	font-size: 14px;
+}
+#restartBtn{
+	height: 20px;
+	font-size: 14px;
+	font-family: OpenSans-SemiBold;
+	cursor: pointer;
+	color: white;
+}
+#restartBtn:hover{
+	color: lightgrey;
+}
