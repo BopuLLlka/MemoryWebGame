@@ -139,6 +139,9 @@ body{
 
 /* Верхняя часть экрана, которая содержит кнопку "начать заново и счёт" */
 #topMenuContainer{
+	-webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
 	display: none;
 	-ms-flex-flow: row;
     -webkit-flex-flow: row;
@@ -152,15 +155,14 @@ body{
 	color: white;
 }
 #score{
+	
 	height: 20px;
 	margin-left: auto;
 	font-family: OpenSans-Bold;
 	font-size: 14px;
 }
 #restartBtn{
-	-webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
+	
 	height: 20px;
 	font-size: 14px;
 	font-family: OpenSans-SemiBold;
@@ -174,6 +176,9 @@ body{
 
 /*Улетающий счёт при нажатии*/
 .currentScore{
+	-webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
 	font-family: OpenSans-Bold;
 	font-size: 50px;
 	position: absolute;

@@ -267,7 +267,6 @@ $(document).ready(function (e)
 			cardsInGame-=2
 			//Увеличиваем счёт
 			score += curScore;
-			console.log("+"+curScore+"="+score);
 			scoreBlock.text("Очки: "+score);
 			$(".currentScore").remove();
 			$("body").append("<div class='currentScore' style='left:"+(mouseEvent.offsetX+20)+"; top:"+(mouseEvent.offsetY+20)+";'> +"+curScore+"</div>")
@@ -281,7 +280,6 @@ $(document).ready(function (e)
 			cardsForGame[secondOpenCardNumber].isOpen=false;
 			//Уменьшаем счёт
 			score -= curScore;
-			console.log("-"+curScore+"="+score);
 			scoreBlock.text("Очки: "+score);
 			$(".currentScore").remove();
 			$("body").append("<div class='currentScore' style='left:"+(mouseEvent.offsetX+20)+"; top:"+(mouseEvent.offsetY+20)+"; color:red;'> -"+curScore+"</div>")
@@ -381,7 +379,6 @@ $(document).ready(function (e)
 				{
 					cardNumberTemp++;
 				}
-				console.log("Номер карты: "+i+"| Присвоен номер: "+allCardsForRandom[i]);
 		}
 		//Тосуем колоду
 		allCardsForRandom = shuffle(allCardsForRandom);
