@@ -73,7 +73,7 @@ $(document).ready(function (e)
 		//Карт осталось в игре
 		cardsInGame=18;
 	}
-	//Сласс нашей карты
+	//Класс нашей карты
 	class Card{
 		/*
 		||====================================
@@ -254,7 +254,7 @@ $(document).ready(function (e)
 		}
 	}
 	//Управление счётом
-	function scoreControl(mouseEvent)
+	function scoreControl(event)
 	{
 		//Высчитываем сколько сейчас нужно прибавить/отнять очков
 		var curScore = (cardsInGame/2)*42;
@@ -269,7 +269,7 @@ $(document).ready(function (e)
 			score += curScore;
 			scoreBlock.text("Очки: "+score);
 			$(".currentScore").remove();
-			$("body").append("<div class='currentScore' style='left:"+(mouseEvent.offsetX+20)+"; top:"+(mouseEvent.offsetY+20)+";'> +"+curScore+"</div>")
+			$("body").append("<div class='currentScore' style='left:"+(event.offsetX)+"; top:"+(event.offsetY)+";'> +"+curScore+"</div>")
 			//Перерисовываем игровое поле
 			setTimeout(reDraw,1000);
 		}
@@ -282,7 +282,7 @@ $(document).ready(function (e)
 			score -= curScore;
 			scoreBlock.text("Очки: "+score);
 			$(".currentScore").remove();
-			$("body").append("<div class='currentScore' style='left:"+(mouseEvent.offsetX+20)+"; top:"+(mouseEvent.offsetY+20)+"; color:red;'> -"+curScore+"</div>")
+			$("body").append("<div class='currentScore' style='left:"+(event.offsetX)+"; top:"+(event.offsetY)+"; color:red;'> -"+curScore+"</div>")
 			//Перерисовываем игровое поле
 			setTimeout(reDraw,1000);
 		}
