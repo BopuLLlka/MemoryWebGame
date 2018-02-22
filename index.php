@@ -1,6 +1,6 @@
 <html>
 <head>
-	<title>Memory</title>
+	<title>Memory Game</title>
 	 <link rel="stylesheet" href="Styles/MainStyle.css">
 	 <script type="text/javascript" src="Scripts/jquery-3.3.1.min.js"></script>
 	 <script type="text/javascript" src="Scripts/MainScript.js"></script>
@@ -14,10 +14,10 @@
 			<p id=startButtonText>Начать игру</p>
 		</div>
 	</div>
-	<div id="topMenuContainer"><div id="restartBtn" class="restart">Начать новую</div><div id="score"></div></div>
-	<div class="blockNone"> 
-		<img id="cardSpriteImg" src="Images/Cards.png"></img> 
-	</div>
+	<div id="topMenuContainer"><div id="restartBtn" class="restart">Начать заново</div><div id="score"></div></div>
+	
+	<img id="cardSpriteImg" src="Images/Cards.png"></img> 
+	
 	<div id="finalScreen">
 		<div id = "finalImage"> </div>
 		<p class="gameText"> Поздравляем!</p>

@@ -351,7 +351,6 @@ $(document).ready(function (e)
 						drawY = 520;
 					}
 				}
-				
 				canvasContext.drawImage(cardSprite, drawX, drawY, cardCropWidth, cardCropHeight, x, y, cardWidth, cardHeigth);
 			}
 		}

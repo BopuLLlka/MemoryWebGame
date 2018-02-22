@@ -1,3 +1,4 @@
+/*Сброс стилей*/
 *{
 	padding: 0px;
 	margin: 0px;
@@ -7,6 +8,7 @@ body{
 
 	background-color: #333336;
 }
+/*Подключение шрифтов*/
 @font-face {
 	font-family: "OpenSans"; 
 	src: url("../Fonts/OpenSans.ttf") format("truetype"); 
@@ -25,7 +27,7 @@ body{
 	font-style: normal; 
 	font-weight: normal; 
 } 
-
+/*Стили канваса и картинки из которой вырезаются карты*/
 #sheet{
 	
 	border: 10px solid #666666;
@@ -35,6 +37,12 @@ body{
 	margin-left: calc(50% - 640px);
 	background-color: black;
 }
+#cardSpriteImg{
+	display: none;
+	width: 2488px;
+	height: 1200px;
+}
+/*Начальный экран*/
 #startImage{
 	width: 503px;
 	height: 261px;
@@ -81,14 +89,6 @@ body{
 	color: #1C7430;
 	letter-spacing: 0;
 }
-.blockNone{
-	display: none;
-}
-#cardSpriteImg{	
-	width: 2488px;
-	height: 1200px;
- 	
-}
 .gameText{
 	width: 300px;
 	position: absolute;
@@ -105,6 +105,9 @@ body{
     -moz-user-select: none;
     -ms-user-select: none;
 }
+/*Конец начального экрана*/
+
+/*Финальны экран*/
 #finalScore{
 	width: 500px;
 	position: absolute;
@@ -129,12 +132,12 @@ body{
 	margin-left: calc(50% - 251.5px);
 	background-image: url("../Images/FinalScreen.png");
 }
-#startScreen{
-	
-}
 #finalScreen{
 	display: none;
 }
+/* Конец финального экрана */
+
+/* Верхняя часть экрана, которая содержит кнопку "начать заново и счёт" */
 #topMenuContainer{
 	display: none;
 	-ms-flex-flow: row;
@@ -164,3 +167,4 @@ body{
 #restartBtn:hover{
 	color: lightgrey;
 }
+/*Верхняя часть конец*/
