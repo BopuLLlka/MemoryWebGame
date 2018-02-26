@@ -61,8 +61,9 @@ $(document).ready(function (e)
 	function initializing()
 	{
 		score = 0;
+		//Они вынесены отдельно, чтоб удобно менять положение карт
 		xStartPosition = 200;
-		yStartPosition = 50;
+		yStartPosition = 90;
 		//Координаты левого верхнего угла карты
 		x = xStartPosition;
 		y = yStartPosition;
@@ -456,9 +457,6 @@ $(document).ready(function (e)
 		if(isGameStart)
 		{
 			scoreBlock.text("Очки: "+score);
-			//Координаты рубашки карт на картинке
-			var xClosed = 2237;
-			var yClosed = 520;
 			//На сколько пикселей сдвинуть слудующую карту
 			var xStep = 150;
 			var yStep = 200;
