@@ -1,4 +1,6 @@
+////////////////////////////////////////////////////////////////////////
 /////////////////////Created by Sergey Davydov//////////////////////////
+////////////////////////////////////////////////////////////////////////
 $(document).ready(function (e)
 {
 	//Находим все элементы из HTML, которые будут использоваться
@@ -59,8 +61,9 @@ $(document).ready(function (e)
 	function initializing()
 	{
 		score = 0;
+		//Они вынесены отдельно, чтоб удобно менять положение карт
 		xStartPosition = 200;
-		yStartPosition = 50;
+		yStartPosition = 90;
 		//Координаты левого верхнего угла карты
 		x = xStartPosition;
 		y = yStartPosition;
@@ -73,7 +76,7 @@ $(document).ready(function (e)
 		//Карт осталось в игре
 		cardsInGame=18;
 	}
-	//Сласс нашей карты
+	//Класс нашей карты
 	class Card{
 		/*
 		||====================================
@@ -240,7 +243,7 @@ $(document).ready(function (e)
 						secondOpenCardNumber = i;
 						isFirstCardOpen = false;
 						//Вызываем функцию подсчёта очков
-						scoreControl();
+						scoreControl(event);
 					}
 					else
 					{
@@ -254,8 +257,9 @@ $(document).ready(function (e)
 		}
 	}
 	//Управление счётом
-	function scoreControl()
+	function scoreControl(mouseEvent)
 	{
+		var message = "";
 		//Высчитываем сколько сейчас нужно прибавить/отнять очков
 		var curScore = (cardsInGame/2)*42;
 		//Если открыты одинаковые карты
@@ -267,8 +271,9 @@ $(document).ready(function (e)
 			cardsInGame-=2
 			//Увеличиваем счёт
 			score += curScore;
-			console.log("+"+curScore+"="+score);
 			scoreBlock.text("Очки: "+score);
+			$(".currentScore").remove();
+			$("body").append("<div class='currentScore' style='left:"+(mouseEvent.clientX-20)+"; top:"+(mouseEvent.clientY-20)+";'> +"+curScore+"</div>")
 			//Перерисовываем игровое поле
 			setTimeout(reDraw,1000);
 		}
@@ -277,10 +282,25 @@ $(document).ready(function (e)
 			//Закрываем карты обратно
 			cardsForGame[firstOpenCardNumber].isOpen=false;
 			cardsForGame[secondOpenCardNumber].isOpen=false;
-			//Уменьшаем счёт
-			score -= curScore;
-			console.log("-"+curScore+"="+score);
-			scoreBlock.text("Очки: "+score);
+			//Небольшая проверка, если счёт совсем плохой
+			if(Math.abs(score)>=999999999999)
+			{
+				message = " Ой, какой счёт, может  начать сначала?";
+				if(Math.abs(score)>=9999999999999)
+				{
+					message = " Дальше я уже не могу рисовать тебе красивые числа, прости:(";
+					score=-9999999999999;
+				}
+			}
+			else
+			{
+				//Уменьшаем счёт
+				score -= curScore;
+			}
+
+			scoreBlock.text("Очки: "+ score + message);
+			$(".currentScore").remove();
+			$("body").append("<div class='currentScore' style='left:"+(mouseEvent.clientX-20)+"; top:"+(mouseEvent.clientY-20)+"; color:red;'> -"+curScore+"</div>")
 			//Перерисовываем игровое поле
 			setTimeout(reDraw,1000);
 		}
@@ -305,10 +325,12 @@ $(document).ready(function (e)
 	//Конец игры
 	function endGame()
 	{
+		//Прячем верхнее меню0
 		topMenuContainer.css("display","none");
 		finalScore.text("Ваш итоговый счёт "+score);
 		canvasContext.clearRect(0, 0, canvas.width, canvas.height);
 		isGameStart = false;
+		//Показать финальный экран
 		showFinalScreen();
 	}
 	//Показать финайльный экран
@@ -334,24 +356,29 @@ $(document).ready(function (e)
 			{
 				x=cardsForGame[i].x;
 				y=cardsForGame[i].y;
+				//Если карта вышла из игры
 				if(cardsForGame[i].isCameOut)
 				{
+						//Координаты чёрной области
 						drawX=2237;
 						drawY=750;
 				}
 				else{
+					//Если карта открыта
 					if(cardsForGame[i].isOpen)
 					{
+						//Рисуем карту по координатам, которые записывали
 						drawX = cardsForGame[i].imgX;
 						drawY = cardsForGame[i].imgY;	
 					}
 					else
 					{
+						//Координаты закрытой карты
 						drawX = 2237;
 						drawY = 520;
 					}
 				}
-				
+				//Рисуем
 				canvasContext.drawImage(cardSprite, drawX, drawY, cardCropWidth, cardCropHeight, x, y, cardWidth, cardHeigth);
 			}
 		}
@@ -367,39 +394,52 @@ $(document).ready(function (e)
 		var cardNumberTemp = 2;
 		for(var i = 0; i < 52; i++)
 		{
+				//Собираем обычнну. колоду какрт 52шт.
+				//Для этого в массив записывается масть карты с маской *00 + номер самой карты, например 100+14 = 114 = Dimond Ace
 				allCardsForRandom[i]=suit+cardNumberTemp;
 
+				//Если 14 карт масти есть
 				if(cardNumberTemp==14)
 				{
+					//Берём следующую масть
 					suit+=100;
+					//И начинаем с двойки
 					cardNumberTemp=2;
 				}
 				else
 				{
+					//Если нет, то просто берём следующую карту
 					cardNumberTemp++;
 				}
-				console.log("Номер карты: "+i+"| Присвоен номер: "+allCardsForRandom[i]);
 		}
 		//Тосуем колоду
 		allCardsForRandom = shuffle(allCardsForRandom);
-		//Берем первые 9 карт из колоды и запихиваем в стопку с картами для игры, после этого перемешиваем их
+		//Берем первые 9 карт из колоды и дважды записываем в стопку с картами для игры
 		for(var i = 0; i<9; i++)
 		{
 			cardsForGame[i] = new Card(allCardsForRandom[i]);
 			cardsForGame[i+9] = new Card(allCardsForRandom[i]);
 		}
+		//Перемешиваем карты для игры
 		cardsForGame = shuffle(cardsForGame);
 	}
 
 	//Алгоритм перемешивания 
 	function shuffle(array) {
+	  //Объявляем переменные
 	  var m = array.length, t, i;
+	  //Пока карты ещё есть
 	  while (m) {
+	  	//Берём случайную карту и вычитаем карту из перемешивания
 	    i = Math.floor(Math.random() * m--);
+	    //Берём вторую карту
 	    t = array[m];
+	    //Первая карта на место второй
 	    array[m] = array[i];
+	    //Вторая на место первой
 	    array[i] = t;
 	  }
+	  //Возвращаем колоду которая получилась
 	  return array;
 	}
 
@@ -411,15 +451,12 @@ $(document).ready(function (e)
 		topMenuContainer.css("display","flex");
 	}
 
-	//Рисуем стол
+	//Рисуем стол и запоминаем координаты карт на столе
 	function drawDesk()
 	{
 		if(isGameStart)
 		{
 			scoreBlock.text("Очки: "+score);
-			//Координаты рубашки карт на картинке
-			var xClosed = 2237;
-			var yClosed = 520;
 			//На сколько пикселей сдвинуть слудующую карту
 			var xStep = 150;
 			var yStep = 200;
@@ -427,20 +464,24 @@ $(document).ready(function (e)
 			var numberOfRows = 3;
 			var numberOfColumns = 6;
 			var cardNumber = 0;
-			//Отрисовка стола
+			//Отрисовка стола и генера
 			for(var j=0;j<numberOfRows;j++)
 			{
 				for(var i=0; i<numberOfColumns; i++)
 				{
+					//Записываем координаты в объект, чтоб потом по ним находить карты на столе
 					cardsForGame[cardNumber].x=x;
 					cardsForGame[cardNumber].y=y;
-
+					//Рисуем карту
 					canvasContext.drawImage(cardSprite, cardsForGame[cardNumber].imgX, cardsForGame[cardNumber].imgY, cardCropWidth, cardCropHeight, x, y, cardWidth, cardHeigth);
+					//Берём следующую карту
 					x+=xStep;
+					//Сдвигаем слудующую карту
 					cardNumber++;
 				}
-				x=xStartPosition;
+				//Когда нарисовали ряд карт сдвигаем карты вниз и начинаем с самого начала
 				y+=yStep;
+				x=xStartPosition;
 			}
 		}
 	}
